@@ -1,0 +1,418 @@
+---
+title: "第二章：R语言基础"
+author: "王敏杰"
+institute: "四川师范大学"
+date: "\\today"
+fontsize: 12pt
+output: binb::metropolis
+section-titles: true
+#toc: true
+header-includes:
+    - \usepackage[fontset = fandol]{ctex}
+    - \input{header.tex}
+link-citations: yes
+colorlinks: yes
+linkcolor: red
+classoption: "dvipsnames,UTF8"
+---
+
+```{r setup, include=FALSE}
+options(digits = 3)
+knitr::opts_chunk$set(
+  comment = "#>",
+  echo = TRUE,
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  out.width = "50%",
+  fig.align = "center",
+  fig.asp = 0.618, # 1 / phi
+  fig.show = "hold"
+)
+```
+
+
+
+# 开始
+
+## 开始
+
+安装完毕后，从windows`开始菜单`，点开`rstudio`图标，就打开了rstudio的窗口，界面效果如下
+
+```{r out.width = '75%', echo = FALSE}
+knitr::include_graphics("images/rstudio-editor.png")
+```
+
+## RStudio 非常友好
+
+想要运行一段R代码，只需要在 RStudio 控制台面板最下面(Console)一行内键入R 代码，然后回车即可。比如
+```{r }
+1 + 1
+```
+
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+log(8)
+```
+
+
+
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+1:12
+```
+
+
+## 对象
+
+### 一切都是对象
+在R中存储的数据称为**对象**， R语言数据处理实际上就是不断的创建和操控这些对象。
+
+### 创建对象
+创建一个 R 对象，首先确定一个名称，然后使用
+赋值操作符 `<-`，将数据赋值给它。比如，如果想给变量 x 赋值为5，在命令行中可以这样写 `x <- 5` ，然后回车.
+
+```{r assignment operator}
+x <- 5
+```
+
+### 打印对象
+
+当键入`x` 然后回车，就打印出 x 的值
+```{r}
+x
+```
+
+
+<!-- ### 操控对象 -->
+<!-- ```{r echo=TRUE, message=TRUE, warning=TRUE} -->
+<!-- x + 2 -->
+<!-- ``` -->
+
+
+
+## 对象
+
+### 创建对象
+```{r}
+l <- "hello world"
+```
+
+### 访问对象
+
+```{r}
+l
+```
+
+
+## 对象
+
+### 创建一个序列
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+d <- 1:10
+```
+
+### 访问对象
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+d
+```
+
+
+
+<!-- ## 对象 -->
+<!-- ### 各种计算 -->
+<!-- ```{r echo=TRUE, message=TRUE, warning=TRUE} -->
+<!-- d / 2 -->
+<!-- ``` -->
+
+
+
+<!-- ```{r echo=TRUE, message=TRUE, warning=TRUE} -->
+<!-- sum(d) -->
+<!-- ``` -->
+
+
+
+<!-- ```{r echo=TRUE, message=TRUE, warning=TRUE} -->
+<!-- d * d -->
+<!-- ``` -->
+
+
+
+
+## 数据类型
+
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/data_type.png")
+```
+## 数据类型
+- 数值型
+```{r}
+3
+5000
+3e+06
+class(0.0001)
+```
+
+
+## 数据类型
+- 字符串型
+```{r}
+"hello"
+"girl"
+"1"     # 注意1 和 "1" 的区别
+```
+
+```{r}
+class("1")
+```
+
+
+## 数据类型
+
+- 逻辑型
+```{r}
+TRUE
+FALSE
+3 < 4
+```
+
+
+```{r}
+class(T)
+```
+
+
+```{r}
+3 < 4
+```
+
+## 数据类型
+- 因子型
+```{r}
+fac <- factor(c("a", "b", "c"))
+fac
+```
+
+
+```{r}
+class(fac)
+```
+
+
+
+
+
+
+## 数据结构
+
+### 向量
+- 用`c`函数将一组数据**构造**成向量，要求每个元素用逗号分隔，且每个元素的数据类型是一致的
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+d <- c(2, 4, 3, 1, 5, 7)
+d
+```
+
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+t <- c("2", "4", "3", "1", "5", "7")
+t
+```
+
+
+长度为 1 的向量
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+x <- c(1) # 
+x <- 1    # 偷懒的写法
+```
+
+
+## 数据结构
+### 矩阵
+- 可以用 `matrix` 函数创建
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+m <- matrix(c(2, 4, 3, 1, 5, 7),
+            nrow = 2, 
+            ncol = 3, 
+            byrow = TRUE
+)
+m
+```
+
+
+
+## 数据结构
+### 数组
+- `array` 函数生成`n`维数组
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+ar <- array(c(11:14, 21:24, 31:34), dim = c(2, 2, 3))
+ar
+```
+
+
+
+
+
+## 数据结构
+### 列表
+- 与`c`函数创建向量的方式相似，元素之间用逗号分开。不同的是，列表允许每个元素不同的数据类型（数值型，字符型，逻辑型等），而向量要求每个元素的数据类型必须相同。
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+list1 <- list(100:110, "R", c(2, 4, 3, 1, 5, 7))
+list1
+```
+
+
+
+## 数据结构
+### 数据框
+- `data.frame`函数构建
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+df <- data.frame(
+  name = c("ace", "bob", "carl", "kaite"),
+  age = c(21, 14, 13, 15),
+  sex = c("girl", "boy", "boy", "girl")
+)
+df
+```
+
+
+
+
+## 数据结构
+### 数据框
+R 对象的数据结构(向量、矩阵、数组、列表和数据框)，总结如下
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/data_struction1.png")
+```
+
+
+
+
+
+
+## 函数
+
+R 语言的强大在于使用**函数**操控各种对象，你可以把对象看作是名词，而函数看作是动词。
+我们用一个简单的例子，`sum()`来演示函数如何工作的。`sum()`后的结果可以直接显示出来，
+```{r}
+sum(5, 10)
+```
+
+也可以赋名。比如下面代码，首先计算`5 + 10`然后赋给新创建的对象`y`， 并在第二行中打印出来对象`y`的值
+
+```{r}
+y <- sum(5, 10)
+y
+```
+
+
+## 更多函数
+
+除了`sum()`求和函数，R语言有很多很多函数
+
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+mean(1:6)
+```
+
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+abs(1:6)
+```
+
+
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+round(3.14159)
+```
+
+
+
+```{r echo=TRUE, message=TRUE, warning=TRUE}
+x <- seq(1, 100)
+sum(x)
+```
+
+
+
+
+## 脚本
+### 什么是脚本
+如果我们已经写好了一段R程序，我们可以保存为**脚本**文件，脚本文件通常以.R作为文件的后缀名。比如我们可以将刚才创建`x`和 `y`对象的命令，保存为脚本文件`my_script.R`。
+这样我们可以在其它时间修改和重新运行它。
+
+## 脚本
+### 创建脚本
+在RStudio中，你可以通过菜单栏依此点击`File > New File > R Script` 来创建一个新的脚本。
+强烈建议大家在运行代码之前，使用脚本的形式编写和编辑自己的程序，养成这样的习惯后，你今后所有的工作都有案可查，并且具有可重复性。
+
+
+## 创建脚本
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/script1.png")
+```
+
+
+
+## 运行脚本
+
+- 点击 `Run` 运行光标所在行
+- 点击 `Source` 运行整个脚本
+
+```{r out.width = '75%', echo = FALSE}
+knitr::include_graphics("images/script2.png")
+```
+
+
+
+
+## 宏包
+
+R 语言的强大还在于各种宏包，一般在[The Comprehensive R Archive Network (CRAN)](https://cran.r-project.org)下载安装。
+
+
+可以用如下命令安装宏包:
+
+```{r, eval = FALSE }
+# 安装单个包
+install.packages("tidyverse")
+```
+
+
+```{r, eval = FALSE }
+# 安装多个包
+install.packages(c("ggplot2", "devtools", "dplyr"))
+```
+
+
+
+## 如何获取帮助
+
+
+- 记住和学习所有的函数几乎是不可能的
+- 打开函数的帮助页面(`Rstudio`右下面板的`Help`选项卡)
+
+```{r, eval = FALSE }
+?sqrt
+?gather
+?spread
+?ggplot2
+?scale
+?map_dfr
+```
+
+## 如何获取帮助
+
+快速获取帮助，是R的又一个优良特性
+
+```{r out.width = '100%', echo = FALSE}
+knitr::include_graphics("images/Rhelp.png")
+```
+
+
+

@@ -1,0 +1,207 @@
+---
+title: "R能给我们生活带来什么？"
+author: "王敏杰"
+institute: "四川师范大学"
+date: "\\today"
+fontsize: 12pt
+output: binb::metropolis
+section-titles: true
+#toc: true
+header-includes:
+    - \usepackage[fontset = fandol]{ctex}
+    - \input{header.tex}
+link-citations: yes
+colorlinks: yes
+linkcolor: red
+classoption: "dvipsnames,UTF8"
+---
+
+```{r setup, include=FALSE}
+options(digits = 3)
+knitr::opts_chunk$set(
+  comment = "#>",
+  echo = TRUE,
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  out.width = "50%",
+  fig.align = "center",
+  fig.asp = 0.618, # 1 / phi
+  fig.show = "hold"
+)
+```
+
+## R能给我们生活带来什么？
+
+这个问题，好比人生三大终极问题：
+
+-   R是什么?
+-   R能干什么?
+-   为什么是R？
+
+# R是什么
+
+## R那些事
+
+-   1992年，新西兰奥克兰大学统计学教授 Ross Ihaka 和 Robert Gentleman，为了方便地给学生教授统计学课程，他们设计开发了R语言（他们名字的首字母都是R）。
+
+```{r echo=FALSE, out.width = '0.8\\textwidth'}
+knitr::include_graphics(path = "images/R_inventor.png")
+```
+
+-   2000年，R1.0.0 发布
+-   2004年，第一届国际useR!会议（随后每年举办一次）
+-   2005年，ggplot2宏包（2018.8 - 2019.8下载量超过 1.3 亿次）
+-   2012年，R2.15.2 发布
+-   2013年，R3.0.2 发布, CRAN上的宏包数量5026个
+-   2016年，Rstudio公司推出 tidyverse 宏包（数据科学当前最流行的R宏包）
+-   2017年，R3.4.1 发布，CRAN上的宏包数量10875个
+-   2019年，R3.6.1 发布，CRAN上的宏包数量15102个
+-   2020年，R4.0.0 发布，CRAN上的宏包数量16054个
+
+## R是什么
+
+官网定义：<https://www.r-project.org/>
+
+```{r eval=FALSE, include=FALSE}
+knitr::include_graphics("images/what_is_R.png")
+```
+
+R语言是用于统计分析，图形表示和报告的编程语言:
+
+-   R 是一个\textcolor{red}{统计编程}语言（statistical programming）
+-   R 可运行于多种平台之上，包括Windows、UNIX 和 Mac OS X
+-   R 拥有顶尖水准的\textcolor{red}{制图}功能
+-   R 是免费的
+-   R 应用广泛，拥有丰富的\textcolor{red}{库包}
+-   活跃的\textcolor{red}{社区}
+
+## R语言发展趋势
+
+```{r echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/tiobe-index.png")
+```
+
+[TIOBE index](https://www.tiobe.com/tiobe-index/)
+
+## 界面很友好
+
+```{r out.width = '85%', echo = FALSE}
+knitr::include_graphics("images/rstudio-editor1.png")
+```
+
+## R路上的大神
+
+2019 年 8 月，国际统计学年会将考普斯总统奖（被誉为统计学的诺贝尔奖）奖颁给 tidyverse的作者
+
+```{r echo=FALSE, out.width = '50%'}
+knitr::include_graphics("images/hadley-wickham.jpg")
+```
+
+-   \href{http://hadley.nz/}{Hadley Wickham}
+-   R路上的大神
+-   改变了R语言的人
+
+# R能干什么
+
+## R & tidyverse能干什么
+
+```{r out.width = '70%', echo = FALSE}
+knitr::include_graphics("images/tidyverse.png")
+```
+
+-   R & tidyverse 四大功能
+
+    -   统计
+    -   可视化
+    -   探索性分析
+    -   可重复性报告
+
+## R能干什么
+
+下面通过代码依次演示
+
+1.  统计
+2.  可视化
+3.  探索性分析
+4.  可重复性报告
+
+# 为什么是R
+
+## 数据科学的流程
+
+Hadley Wickham 定义了数据科学的工作流程
+
+```{r echo=FALSE, out.width = '\\textwidth'}
+knitr::include_graphics("images/tidyverse.png")
+```
+
+<https://www.tidyverse.org/>
+
+## 为什么选择R
+
+事实上，数据科学是为社会科学服务的
+
+```{r echo=FALSE, out.width = '70%'}
+knitr::include_graphics("images/social_science.jpg")
+```
+
+## 为什么选择R
+
+选择R & tidyverse的原因
+
+-   对学生
+
+    -   统计分析，看家本领 (好用)
+    -   ggplot2画图，颜值担当 (好看)
+    -   tidyverse语法，简单易懂 (好学)
+    -   可重复性报告，方便快捷 (好玩)
+
+-   对老板
+
+    -   跟踪过程
+    -   团队积累
+
+## 一见钟情，还是相见恨晚？
+
+```{r echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/meme.png")
+```
+
+# 关于学习
+
+## 关于学习
+
+我很少使用
+
+$$
+f(x)=\frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2} x^{2}}
+$$
+
+更多的是
+
+```{r, eval = FALSE}
+library(tidyverse)
+summary_monthly_temp <- weather %>% 
+  group_by(month) %>% 
+  summarize(mean = mean(temp), 
+            std_dev = sd(temp))
+```
+
+## 关于学习
+
+### 课程目标
+
+-   训练数据思维，提升编程技能，培养创新能力
+
+### 学习方法
+
+-   **问题驱动型学习**
+-   多实践（光看李小龙的电影，是学不会功夫的）
+-   把R看做是知识学习的**脚手架**，不是 learning R，而是 learning with R.
+
+## 推荐阅读
+
+-   [为什么R语言是当今最值得学习的数据科学语言](https://www.sharpsightlabs.com/blog/r-recommend-data-science/)
+-   [R for Data Science](https://r4ds.had.co.nz/)
+-   <https://www.tidyverse.org/>
