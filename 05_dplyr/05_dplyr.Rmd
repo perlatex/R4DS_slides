@@ -1,0 +1,492 @@
+---
+title: "第四章：数据处理"
+author: "王敏杰"
+institute: "四川师范大学"
+date: "\\today"
+fontsize: 12pt
+output: binb::metropolis
+section-titles: true
+#toc: true
+header-includes:
+    - \usepackage[fontset = fandol]{ctex}
+    - \input{header.tex}
+link-citations: yes
+colorlinks: yes
+linkcolor: red
+classoption: "dvipsnames,UTF8"
+---
+
+```{r setup, include=FALSE}
+options(digits = 3)
+knitr::opts_chunk$set(
+  comment = "#>",
+  echo = TRUE,
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  out.width = "100%",
+  fig.align = "center",
+  fig.asp = 0.618, # 1 / phi
+  fig.show = "hold"
+)
+```
+
+## 正式进入tidyverse家族的学习
+```{r echo=FALSE, out.width = '85%'}
+knitr::include_graphics("images/tidyverse.png")
+```
+
+## tidyverse 家族
+
+tidyverse家族主要成员包括
+
+
+| 功能 | 宏包        |
+|------|-------------|
+有颜值担当 | ggplot2 |
+数据处理王者 | dplyr |
+数据转换专家  | tidyr |
+数据载入利器 | readr |
+循环加速器 | purrr |
+强化数据框 | tibble |
+
+# 数据读取
+
+## 读取数据 
+
+R语言提供了很多读取数据的函数。
+
+
+文件格式                       |       **R** 函数 
+:---------------------------   |       :----------------------
+.txt                           |       read.table()
+.csv                           |       read.csv() and readr::read_csv()
+.xls and .xlsx                 |       readxl::read_excel() and openxlsx::read.xlsx()
+.sav                           |       foreign::read.spss()
+.Rdata or rda                  |       load()
+.rds                           |       readRDS() and readr::read_rds() 
+.dta                           |       haven::read_dta() and haven::read_stata()
+Internet                       |       download.file()
+
+
+
+## 范例 
+
+```{r}
+library(readr)
+wages <- read_csv("./demo_data/wages.csv")
+head(wages, 6)
+```
+
+## 范例 
+```{r}
+library(readxl)
+d <- read_excel("./demo_data/olympics.xlsx")
+tail(d, 6)
+```
+
+
+
+
+# 数据处理
+
+## tidy原则
+
+Hadley Wickhamt提出了数据科学tidy原则，我结合自己的理解，tidy思想体现在:
+
+```{r out.width = '85%', echo = FALSE}
+knitr::include_graphics("images/import_datatype01.png")
+```
+
+- 一切都是数据框，任何数据都可以规整
+- 数据框的一列代表一个**变量**，数据框的一行代表一次**观察**
+- 函数处理数据时，数据框进数据框出（函数的第一个参数始终为**数据框**）
+
+
+
+## dplyr宏包
+本章我们介绍tidyverse里数据处理的神器dplyr宏包。首先，我们加载该宏包
+```{r message = FALSE, warning = FALSE}
+library(dplyr)
+```
+
+dplyr 定义了数据处理的规范语法，其中主要包含以下七个主要的函数。
+
+* `mutate() `, `select() `, `filter() ` 
+* `summarise() `, `group_by()`, `arrange() `
+* `left_join()`, `right_join()`， `full_join()`
+
+我们将依次介绍
+
+
+## 假定数据
+
+假定我们有一数据框，包含三位学生的英语和数学科目
+\small
+```{r}
+df <- data.frame(
+      name = c("Alice", "Alice", "Bob", "Bob", "Carol", "Carol"),
+      type = c("english", "math", "english", "math", "english", "math")
+)
+df
+```
+
+
+
+## `mutate() `增加一列
+这里有他们的最近的考试成绩，想添加到数据框中
+\footnotesize
+```{r}
+score2020 <- c(80.2, 90.5, 92.2, 90.8, 82.5, 84.6)
+score2020
+```
+
+
+\begincols[T]
+\begincol[T]{.48\textwidth}
+使用传统的方法
+```{r}
+df$score <- score2020
+df
+```
+
+```{r include=FALSE}
+df <- data.frame(
+      name = c("Alice", "Alice", "Bob", "Bob", "Carol", "Carol"),
+      type = c("english", "math", "english", "math", "english", "math")
+)
+```
+
+\endcol
+
+\begincol[T]{.48\textwidth}
+dplyr语法这样写
+
+```{r}
+#
+mutate(df, score = score2020)
+```
+\endcol
+\endcols
+
+
+
+
+
+## `mutate() `增加一列
+
+`mutate()` 函数
+
+```{r, eval=FALSE}
+mutate(.data = df, score = score2020)
+```
+
+- 第一参数是我们要处理的数据框，比如这里的`df`，
+- 第二个参数是`score = score2020`，等号左边的`score`是我们打算创建一个新列，而取的列名；
+等号右边是装着学生成绩的**向量**（注意，向量 的长度要与数据框的行数相等，比如这里长度都是6）
+
+
+
+
+## `管道` %>%
+
+这里有必要介绍下管道操作符 [ `%>%` ](https://magrittr.tidyverse.org/).
+
+```{r}
+c(1:10)
+```
+
+```{r}
+sum(c(1:10))
+```
+
+
+与下面的写法是等价的,
+```{r}
+c(1:10) %>% sum()
+```
+
+
+
+## `管道` %>%
+
+```{r, eval=FALSE}
+c(1:10) %>% sum()
+```
+这条语句的意思，向量`c(1:10)` 通过管道操作符 `%>%` ，传递到函数`sum()`的第一个参数位置，即`sum(c(1:10))`， 这个`%>%`管道操作符还是很形象的，
+
+```{r out.width = '50%', echo = FALSE}
+knitr::include_graphics("images/pipe1.png")
+```
+
+
+## `管道` %>%
+当对执行多个函数操作的时候，就显得格外方便，代码可读性更强。
+
+```{r}
+sqrt(sum(abs(c(-10:10))))
+```
+
+
+```{r}
+c(-10:10) %>% abs() %>% sum() %>% sqrt()
+```
+
+
+
+
+
+## `管道` %>%
+那么，上面增加学生成绩的语句`mutate(df, score = score2020)`就可以使用管道
+
+```{r out.width = '75%', echo = FALSE}
+knitr::include_graphics("images/pipe2.png")
+```
+
+
+## `管道` %>%
+```{r}
+# 等价于
+df %>% mutate(score = score2020)
+```
+是不是很赞？
+
+
+
+```{r, include=FALSE}
+df <- df %>% mutate(score = score2020)
+df
+```
+
+
+
+
+
+## `select() ` 选择某列
+
+`select()`，就是选择数据框的某一列
+
+\bigskip
+
+\begincols
+\begincol{.48\textwidth}
+传统的方法
+```{r}
+df["name"]
+```
+
+\endcol
+
+\begincol{.48\textwidth}
+dplyr的方法
+```{r}
+df %>% select(name)
+```
+\endcol
+\endcols
+
+
+
+## `select() ` 选择某列
+如果选取多列，就再写一个就行了
+```{r}
+df %>% select(name, score)
+```
+
+
+## `select()` 选择某列
+
+如果不想要某列， 可以在变量前面加`-`， 
+```{r}
+df %>% select(-type)
+```
+
+
+
+
+
+
+## `filter() ` 筛选
+
+我们还可以对数据行方向的选择和筛选，比如这里把**成绩高于90分的**同学筛选出来
+
+```{r}
+df %>% filter(score >= 90)
+```
+
+
+## `filter()` 筛选
+
+我们也可以限定多个条件进行筛选, 英语成绩高于90分的筛选出来
+```{r}
+df %>% filter(type == "english", score >= 90)
+```
+
+
+
+
+## `summarise() `统计
+
+`summarise() `主要用于统计，往往与其他函数配合使用
+
+\medskip
+比如，计算所有同学的考试成绩的均值
+```{r}
+df %>% summarise( mean_score = mean(score))
+```
+
+比如，计算所有同学的考试成绩的标准差
+```{r}
+df %>% summarise( mean_score = sd(score))
+```
+
+
+
+
+## `summarise() `统计
+还可以同时完成多个统计
+```{r}
+df %>% summarise(
+  mean_score = mean(score),
+  median_score = median(score),
+  n = n(),
+  sum = sum(score)
+)
+```
+
+
+
+
+
+## `group_by()`分组
+
+先分组再统计。比如，我们想统计每个学生的平均成绩，即先按学生`name`分组，然后分别求平均
+
+\small
+```{r}
+df %>% 
+  group_by(name) %>% 
+  summarise( 
+    mean_score = mean(score),
+   sd_score = sd(score)
+  )
+```
+
+
+
+
+
+## `arrange() `排序
+我们按照考试成绩从低到高排序，然后输出
+```{r}
+df %>% arrange(score)
+```
+
+
+
+## `arrange() `排序
+
+如果从高到低降序排列呢，有两种方法:
+
+\small
+\begincols
+\begincol{.48\textwidth}
+```{r}
+df %>% arrange(-score)
+```
+\endcol
+
+\begincol{.48\textwidth}
+
+```{r}
+df %>% arrange(desc(score))
+```
+\endcol
+\endcols
+
+哪边可读性更强些？
+
+
+## `arrange() `排序
+也可对多个变量先后排序。
+\medskip
+比如，先按学科排，然后按照成绩从高到底排序
+```{r}
+df %>% 
+  arrange(type, desc(score))
+```
+
+
+
+
+
+## `left_join` 合并
+假定我们已经统计了每个同学的平均成绩，存放在数据框`df1`
+
+```{r}
+df1 <- df %>% 
+  group_by(name) %>% 
+  summarise( mean_score = mean(score) )
+df1
+```
+
+
+## `left_join` 合并
+同时，我们又有新一个数据框`df2`，它包含同学们的年龄信息
+```{r}
+df2 <- tibble(
+      name = c("Alice", "Bob"),
+      age =  c(12, 13)
+)
+df2
+```
+
+
+
+## `left_join` 左合并
+
+通过姓名`name`把两个数据框`df1`和`df2`合并，
+
+```{r}
+left_join(df1, df2, by = "name")
+```
+
+大家注意到最后一行Carol的年龄是`NA`， 大家想想为什么呢？
+
+
+
+
+
+## `left_join` 左合并
+
+当然，也可以这样写
+```{r}
+df1 %>% left_join(df2, by = "name")
+```
+
+
+
+
+
+
+## `right_join` 右合并
+我们再试试`right_join()`右合并
+
+```{r, message=FALSE}
+df1 %>% right_join(df2, by = "name")
+```
+Carol同学的信息没有了？ 大家想想又为什么呢？
+
+
+<!-- 事实上，答案就在函数的名字上，`left_join()`是左合并，即以左边数据框`df1`中的学生姓名`name`为准，在右边数据框`df2`里，有`Alice`和`Bob`的年龄，那么就对应合并过来，没有`Carol`，就为缺失值`NA` -->
+
+<!-- `left_join()`是右合并，即以右边数据框`df2`中的学生姓名`name`为准，只有`Alice`和`Bob`，因此而`df1`只需要把`Alice`和`Bob`的信息粘过来。 -->
+
+
+
+## 延伸阅读
+
+- 推荐[https://dplyr.tidyverse.org/](https://dplyr.tidyverse.org/).
+- [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+- 运行并读懂[nycflights.Rmd](https://github.com/perlatex/R_for_Data_Science/blob/master/data/nycflights.Rmd)
+
