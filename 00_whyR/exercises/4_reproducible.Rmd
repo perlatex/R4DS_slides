@@ -8,7 +8,7 @@ output:
     extra_dependencies:
       ctex: UTF8
     number_sections: yes
-    toc: yes
+    #toc: yes
     df_print: kable
 classoptions: "hyperref, 12pt, a4paper"
 ---
@@ -26,8 +26,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 # 引言
 
-这是一份关于新冠肺炎的探索性分析报告。
-
+新型冠状病毒疫情在多国蔓延，一些国家的病例确诊数量明显增多，各国防疫力度继续加强。本章通过分析疫情数据，了解疫情发展，祝愿人类早日会战胜病毒！
 
 
 # 导入数据
@@ -47,7 +46,7 @@ library(covdata)
 
 ```{r, echo = FALSE}
 covnat %>% 
-  tail(10) 
+  tail(8) 
 ```
 
 
@@ -67,6 +66,16 @@ covnat %>%
 | cu_cases  	| 累积确诊病例       	|
 | cu_deaths 	| 累积死亡病例       	|
 
+# 数据探索
+
+找出累积确诊病例最多的几个国家
+
+```{r}
+covnat %>% 
+  ungroup() %>% 
+  filter(date == max(date)) %>% 
+  slice_max(cu_cases, n = 8)
+```
 
 
 # 可视化
@@ -74,12 +83,14 @@ covnat %>%
 为了更好的呈现数据，我们将筛选出美国确诊病例数据，并可视化
 
 ```{r, fig.showtext = TRUE}
-covdata::covnat %>% 
-  dplyr::filter(iso3 == "USA") %>% 
-  dplyr::filter(cu_cases > 0) %>% 
+covnat %>% 
+  filter(iso3 == "USA") %>% 
+  filter(cu_cases > 0) %>% 
+  ungroup() %>% 
   
   ggplot(aes(x = date, y = cases)) +
   geom_path() +
+  scale_x_date(name = NULL, breaks = "month") +
   labs(title = "美国新冠肺炎累积确诊病例",
        subtitle = "数据来源https://kjhealy.github.io/covdata/")
 ```
