@@ -9,6 +9,7 @@ output:
       ctex: UTF8
     number_sections: yes
     toc: yes
+    df_print: kable
 classoptions: "hyperref, 12pt, a4paper"
 ---
 
@@ -46,8 +47,7 @@ library(covdata)
 
 ```{r, echo = FALSE}
 covnat %>% 
-  tail(10) %>% 
-  knitr::kable()
+  tail(10) 
 ```
 
 

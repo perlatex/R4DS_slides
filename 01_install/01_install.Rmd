@@ -33,13 +33,28 @@ knitr::opts_chunk$set(
 
 # 配置R语言环境
 
+## 准备工作
+
+- \textcolor{red}{第一步}：连网（无线）办法 
+  - 用户名：学号+ @sicnu，比如 `20150956@sicnu`
+  - 密码：出生年月日 + 身份证最后一位(如果最后一位为X，要大写)，比如 `19880923X`
+   
+- \textcolor{red}{第二步}：加QQ群 877502037
+
+```{r echo=FALSE, out.width = '25%'}
+knitr::include_graphics(path = "images/PsyStatQQgroup.png")
+```
+
+- \textcolor{red}{第三步}：在QQ群文件里下载(R-4.0.2-win.exe, RStudio-1.3.1091.exe)，点击安装
+
+
 ## 环境配置
 
 主要分三步：
 
 -   安装R
 -   安装Rstudio
--   安装必要的宏包
+-   安装必要的宏包(packages)
 
 ## 第一步安装R
 
@@ -62,11 +77,11 @@ knitr::include_graphics("images/Rstudio_install.png")
 
 这里有个小小的提示：
 
--   电脑用户名不要有中文和空格
+-   电脑用户名\textcolor{red}{不要有中文和空格}
 
--   尽量安装在非系统盘，比如，可以选择安装在D盘
+-   尽量安装在\textcolor{red}{非系统盘}，比如，可以选择安装在D盘
 
--   安装路径不要有中文和空格。比如，这样就比较好
+-   安装路径\textcolor{red}{不要有中文和空格}。比如，这样就比较好
 
     -   `D:/R`
     -   `D:/Rstudio`
@@ -85,6 +100,9 @@ knitr::include_graphics("images/rstudio-editor1.png")
 knitr::include_graphics(c("images/engine.jpg", "images/dashboard.jpg"))
 ```
 
+\centering{R 是有趣的灵魂，Rstudio 是好看的皮囊}
+
+
 ## 第三步安装宏包
 
 ```{r out.width = '65%', echo = FALSE}
@@ -93,24 +111,24 @@ knitr::include_graphics("images/RStudio-Screenshot.png")
 
 -   命令行安装
 
-    -   `install.packages("tidyverse")`
+    - `install.packages("tidyverse")`
 
-## \LaTeX
+<!-- ## \LaTeX (不是必须的) -->
 
-如果想生成pdf文档，可能需要\LaTeX，然而，这个软件会比较大，动辄4个G. 因此，我推荐安装轻量级的 `tinytex`. 安装方法如下，
+<!-- 如果想生成pdf文档，可能需要\LaTeX，然而，这个软件会比较大，动辄4个G. 因此，我推荐安装轻量级的 `tinytex`. 安装方法如下， -->
 
--   `install.packages("tinytex")`
--   `tinytex::install_tinytex(dir = "D:\\Tinytex", force = T)`
+<!-- -   `install.packages("tinytex")` -->
+<!-- -   `tinytex::install_tinytex(dir = "D:\\Tinytex", force = T)` -->
 
-\vfill
+<!-- \vfill -->
 
-中途会有两次警告，按"确定"就可以了
+<!-- 中途会有两次警告，按"确定"就可以了 -->
 
-## 获取帮助很便捷
+<!-- ## 获取帮助很便捷 -->
 
-```{r out.width = '100%', echo = FALSE}
-knitr::include_graphics("images/Rhelp.png")
-```
+<!-- ```{r out.width = '100%', echo = FALSE} -->
+<!-- knitr::include_graphics("images/Rhelp.png") -->
+<!-- ``` -->
 
 ## 测试
 
