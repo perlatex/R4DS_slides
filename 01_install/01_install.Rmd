@@ -84,35 +84,42 @@ knitr::include_graphics("images/Rstudio_install.png")
 -   安装路径\textcolor{red}{不要有中文和空格}。比如，这样就比较好
 
     -   `D:/R`
-    -   `D:/Rstudio`
+    -   `D:/Rstudio
+    
 
-## RStudio很友好
-
-```{r out.width = '85%', echo = FALSE}
-knitr::include_graphics("images/rstudio-editor1.png")
-```
 
 ## R 与 RStudio 是什么关系呢
 
 \qquad \qquad \qquad R \hspace{4cm} RStudio
 
-```{r out.width = '45%', echo = FALSE}
+```{r, fig.show="hold", out.width="49%", echo = FALSE}
 knitr::include_graphics(c("images/engine.jpg", "images/dashboard.jpg"))
 ```
 
-\centering{R 是有趣的灵魂，Rstudio 是好看的皮囊}
+\centering{R 是有趣的灵魂， Rstudio 是好看的皮囊}
+
+
+## RStudio很友好
+
+从windows开始菜单，点开rstudio，界面效果
+
+```{r out.width = '75%', echo = FALSE}
+knitr::include_graphics("images/rstudio-editor1.png")
+```
+
 
 
 ## 第三步安装宏包
 
-```{r out.width = '65%', echo = FALSE}
+```{r out.width = '60%', echo = FALSE}
 knitr::include_graphics("images/RStudio-Screenshot.png")
 ```
 
 -   命令行安装
 
     - `install.packages("tidyverse")`
-
+    - 回车，安静等待
+    
 <!-- ## \LaTeX (不是必须的) -->
 
 <!-- 如果想生成pdf文档，可能需要\LaTeX，然而，这个软件会比较大，动辄4个G. 因此，我推荐安装轻量级的 `tinytex`. 安装方法如下， -->
@@ -130,9 +137,27 @@ knitr::include_graphics("images/RStudio-Screenshot.png")
 <!-- knitr::include_graphics("images/Rhelp.png") -->
 <!-- ``` -->
 
+
+## 配置
+
+- 选择国内镜像，安装速度会快很多 
+- 设置如下：
+
+<!-- ![](images/mirror1.png){width=49%} ![](images/mirror2.png){width=49%} -->
+
+
+```{r image_grobs, fig.show='hold', out.width = "49%", fig.align = "default", echo=FALSE}
+library(cowplot)
+library(ggplot2)
+
+ggdraw() + draw_image("images/mirror1.png")
+ggdraw() + draw_image("images/mirror2.png")
+```
+
+
 ## 测试
 
-复制以下代码到脚本编辑区 \small
+复制以下代码到**脚本编辑区** \small
 
 ```{r, eval=FALSE}
 library(ggplot2)
@@ -150,7 +175,22 @@ ggplot(midwest, aes(x = area, y = poptotal)) +
   )
 ```
 
-## 测试
+
+
+## 运行
+
+```{r out.width = '65%', echo = FALSE}
+knitr::include_graphics("images/run_script.png")
+```
+
+- 方法1：点击`Run`, 运行光标所在行的代码
+- 方法2：点击`Source`，从头到尾运行全部代码
+
+
+
+
+
+## 如果出现这个图，说明配置成功
 
 ```{r out.width = '100%', echo = FALSE}
 library(ggplot2)
@@ -176,8 +216,23 @@ ggplot(midwest, aes(x = area, y = poptotal)) +
 
 -   我的Rstudio需要哪些设置？
 
+-   我的系统不能兼容64位的Rstudio？
+
 -   为什么Rstudio打开是空白呢？
 
 -   安装宏包太慢，怎么解决？
 
 -   安装宏包，遇到报错信息"unable to access index for repository..."？
+
+
+## happy R
+
+我再啰嗦几句，课时有限，要想掌握这门技术，需要课后多下功夫。
+
+1、请务必配置好环境，包括安装宏包（群里有安装视频，实在不行，@我远程协助）
+2、学习资料 https://bookdown.org/wangminjie/R4DS/
+3、强烈推荐参考书目《R数据科学》（群文件book文件夹中）
+4、我们不是孙悟空，一出生就身怀绝技。No shame in asking help
+5、学习曲线会比较陡，但有老司机带路，要有信心。
+
+祝大家happy R ！

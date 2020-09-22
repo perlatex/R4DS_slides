@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.9.5)  15 SEP 2020 08:39
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.9.19)  22 SEP 2020 10:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **01_install.tex
 (./01_install.tex
 LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-09-03> (g:/Tinytex/texmf-dist/tex/latex/beamer/beame
+L3 programming layer <2020-09-06> (g:/Tinytex/texmf-dist/tex/latex/beamer/beame
 r.cls
 Document Class: beamer 2020/07/22 v3.59 A class for typesetting presentations
 (g:/Tinytex/texmf-dist/tex/latex/beamer/beamerbasemodes.sty (g:/Tinytex/texmf-d
@@ -630,9 +630,9 @@ r XeLaTeX)
 (g:/Tinytex/texmf-dist/tex/latex/fontspec/fontspec.sty (g:/Tinytex/texmf-dist/t
 ex/latex/l3packages/xparse/xparse.sty (g:/Tinytex/texmf-dist/tex/latex/l3kernel
 /expl3.sty
-Package: expl3 2020-09-03 L3 programming layer (loader) 
+Package: expl3 2020-09-06 L3 programming layer (loader) 
 (g:/Tinytex/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
-File: l3backend-xetex.def 2020-09-01 L3 backend support: XeTeX
+File: l3backend-xetex.def 2020-09-11 L3 backend support: XeTeX
 \g__graphics_track_int=\count319
 \l__pdf_internal_box=\box75
 \g__pdf_backend_object_int=\count320
@@ -1357,7 +1357,7 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
 
 (./01_install.vrb
 LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/m/n' will be
-(Font)              scaled to size 11.97308pt on input line 7.
+(Font)              scaled to size 11.97308pt on input line 6.
 
 Package fontspec Warning: Font "FandolFang-Regular" does not contain requested
 (fontspec)                Script "CJK".
@@ -1386,9 +1386,9 @@ File: images/PsyStatQQgroup.png Graphic file (type bmp)
 <images/PsyStatQQgroup.png>
 )
 LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/b/n' will be
-(Font)              scaled to size 13.54568pt on input line 204.
+(Font)              scaled to size 13.54568pt on input line 202.
 
-Overfull \vbox (4.59659pt too high) detected at line 204
+Overfull \vbox (4.59659pt too high) detected at line 202
  []
 
 [3
@@ -1399,7 +1399,7 @@ Overfull \vbox (4.59659pt too high) detected at line 204
 File: images/Rinstall.png Graphic file (type bmp)
 <images/Rinstall.png>
 
-Overfull \vbox (9.22867pt too high) detected at line 234
+Overfull \vbox (9.22867pt too high) detected at line 228
  []
 
 [5
@@ -1411,7 +1411,7 @@ Overfull \vbox (9.22867pt too high) detected at line 234
 File: images/Rstudio_install.png Graphic file (type bmp)
 <images/Rstudio_install.png>
 )
-Overfull \vbox (12.22646pt too high) detected at line 249
+Overfull \vbox (12.22646pt too high) detected at line 241
  []
 
 [6
@@ -1422,19 +1422,19 @@ Overfull \vbox (12.22646pt too high) detected at line 249
 (./01_install.vrb) [7
 
 ]
-File: images/rstudio-editor1.png Graphic file (type bmp)
-<images/rstudio-editor1.png>
-
-Overfull \vbox (17.32492pt too high) detected at line 280
- []
-
-[8
-
-]
 File: images/engine.jpg Graphic file (type bmp)
 <images/engine.jpg>
 File: images/dashboard.jpg Graphic file (type bmp)
 <images/dashboard.jpg>
+[8
+
+]
+File: images/rstudio-editor1.png Graphic file (type bmp)
+<images/rstudio-editor1.png>
+
+Overfull \vbox (15.68243pt too high) detected at line 279
+ []
+
 [9
 
 ]
@@ -1444,32 +1444,49 @@ File: images/dashboard.jpg Graphic file (type bmp)
 File: images/RStudio-Screenshot.png Graphic file (type bmp)
 <images/RStudio-Screenshot.png>
 )
-Overfull \vbox (7.61784pt too high) detected at line 309
+Overfull \vbox (9.99953pt too high) detected at line 297
  []
 
 [10
 
 ]
+File: 01_install_files/figure-beamer/image_grobs-1.pdf Graphic file (type pdf)
+<use 01_install_files/figure-beamer/image_grobs-1.pdf>
+File: 01_install_files/figure-beamer/image_grobs-2.pdf Graphic file (type pdf)
+<use 01_install_files/figure-beamer/image_grobs-2.pdf>
+[11
+
+]
 \openout4 = `01_install.vrb'.
 
 (./01_install.vrb
+LaTeX Font Info:    Font shape `TU/FandolHei-Regular(0)/b/n' will be
+(Font)              scaled to size 11.28809pt on input line 3.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 8.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 7.
 )
 Overfull \vbox (26.97826pt too high) detected at line 334
  []
 
-[11
-
-]
-File: 01_install_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (type p
-df)
-<use 01_install_files/figure-beamer/unnamed-chunk-8-1.pdf>
 [12
 
-] [13
+]
+\openout4 = `01_install.vrb'.
 
-] [14
+(./01_install.vrb
+File: images/run_script.png Graphic file (type bmp)
+<images/run_script.png>
+) [13
+
+]
+File: 01_install_files/figure-beamer/unnamed-chunk-9-1.pdf Graphic file (type p
+df)
+<use 01_install_files/figure-beamer/unnamed-chunk-9-1.pdf>
+[14
+
+] [15
+
+] [16
 
 ]
 \tf@nav=\write7
@@ -1481,24 +1498,24 @@ df)
 \tf@snm=\write9
 \openout9 = `01_install.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 368.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 368.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 379.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 379.
 (./01_install.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 368.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 368.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 379.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 379.
 Package rerunfilecheck Info: File `01_install.out' has not changed.
 (rerunfilecheck)             Checksum: 9BAB9A728EF2FE768960DE888B30CAF9;179.
  ) 
 Here is how much of TeX's memory you used:
- 32591 strings out of 481653
- 680899 string characters out of 5932920
- 974773 words of memory out of 5000000
- 48930 multiletter control sequences out of 15000+600000
- 548977 words of font info for 83 fonts, out of 8000000 for 9000
+ 32638 strings out of 481649
+ 682807 string characters out of 5932812
+ 974940 words of memory out of 5000000
+ 48975 multiletter control sequences out of 15000+600000
+ 548985 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  66i,13n,128p,1813b,747s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 01_install.pdf (14 pages).
+Output written on 01_install.pdf (16 pages).
 
 ! kpathsea:make_tex: Invalid filename `Fira Sans Light', contains ' '
 ! kpathsea:make_tex: Invalid filename `Fira Sans Light Italic', contains ' '
