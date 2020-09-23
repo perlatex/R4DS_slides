@@ -39,10 +39,12 @@ knitr::opts_chunk$set(
   - 用户名：学号+ @sicnu，比如 `20150956@sicnu`
   - 密码：出生年月日 + 身份证最后一位(如果最后一位为X，要大写)，比如 `19880923X`
    
-- \textcolor{red}{第二步}：加QQ群 877502037
+- \textcolor{red}{第二步}：加QQ群 
 
 ```{r echo=FALSE, out.width = '25%'}
-knitr::include_graphics(path = "images/PsyStatQQgroup.png")
+#knitr::include_graphics(path = "images/QQgroup_PsyStats.png")
+knitr::include_graphics(path = "images/QQgroup_shizishan.png")
+knitr::include_graphics(path = "images/QQgroup_chenglong.png")
 ```
 
 - \textcolor{red}{第三步}：在QQ群文件里下载(R-4.0.2-win.exe, RStudio-1.3.1091.exe)，点击安装
@@ -137,11 +139,32 @@ knitr::include_graphics("images/RStudio-Screenshot.png")
 <!-- knitr::include_graphics("images/Rhelp.png") -->
 <!-- ``` -->
 
+## 如果宏包安装速度太慢， 方法一
 
-## 配置
+- 指定清华大学镜像
 
-- 选择国内镜像，安装速度会快很多 
-- 设置如下：
+```{r, eval = FALSE}
+install.packages(
+  "tidyverse",
+  repos = "http://mirrors.tuna.tsinghua.edu.cn/CRAN"
+)
+```
+
+
+- 或者，指定兰州大学镜像
+
+```{r, eval = FALSE}
+install.packages(
+  "tidyverse",
+  repos = "https://mirror.lzu.edu.cn/CRAN/"
+)
+```
+
+
+
+## 如果宏包安装速度太慢， 方法二
+
+- `Rstudio`里设置镜像，步骤如下：
 
 <!-- ![](images/mirror1.png){width=49%} ![](images/mirror2.png){width=49%} -->
 
@@ -155,9 +178,16 @@ ggdraw() + draw_image("images/mirror2.png")
 ```
 
 
+- 然后
+
+```{r, eval = FALSE }
+install.packages("tidyverse")
+```
+
+
 ## 测试
 
-复制以下代码到**脚本编辑区** \small
+复制以下代码到**脚本编辑区** \footnotesize
 
 ```{r, eval=FALSE}
 library(ggplot2)
@@ -212,27 +242,22 @@ ggplot(midwest, aes(x = area, y = poptotal)) +
 
 ## 可能的问题
 
--   我的电脑是苹果系统，怎么安装呢？
-
--   我的Rstudio需要哪些设置？
-
--   我的系统不能兼容64位的Rstudio？
-
--   为什么Rstudio打开是空白呢？
-
--   安装宏包太慢，怎么解决？
-
--   安装宏包，遇到报错信息"unable to access index for repository..."？
+- 我的电脑是苹果系统，怎么安装呢？
+- 我的Rstudio需要哪些设置？
+- 我的系统不能兼容64位的Rstudio？
+- 为什么Rstudio打开是空白呢？
+- 安装宏包太慢，怎么解决？
+- 安装宏包，遇到报错信息"unable to access index for repository..."？
 
 
-## happy R
+## Happy R
 
-我再啰嗦几句，课时有限，要想掌握这门技术，需要课后多下功夫。
+课时有限，想掌握这门技术，需要课后多下功夫
 
-1、请务必配置好环境，包括安装宏包（群里有安装视频，实在不行，@我远程协助）
-2、学习资料 https://bookdown.org/wangminjie/R4DS/
-3、强烈推荐参考书目《R数据科学》（群文件book文件夹中）
-4、我们不是孙悟空，一出生就身怀绝技。No shame in asking help
-5、学习曲线会比较陡，但有老司机带路，要有信心。
+- 请务必配置好环境，包括安装宏包（群里有安装视频，实在不行，@我远程协助）
+- 学习资料 https://bookdown.org/wangminjie/R4DS/
+- 参考书目《R数据科学》（群文件book文件夹中）
+- 我们不是孙悟空，一出生就身怀绝技。No shame in asking help
+- 学习曲线会比较陡，但有老司机带路，要有信心。
 
 祝大家happy R ！

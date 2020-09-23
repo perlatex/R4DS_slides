@@ -36,7 +36,8 @@ knitr::opts_chunk$set(echo = TRUE,
 ```{r}
 # Load libraries
 library(tidyverse) 
-library(covdata)
+#library(covdata)
+load("covnat.rda")
 ```
 
 
